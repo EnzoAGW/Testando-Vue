@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Vue abilizando   </title>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+     new Vue({
+  el: '#app',
+  template:` <div class="master">
+    <header>
+        <p>Início</p>
+        <p>Serviços</p>
+        <p>endereços</p>
+        <p>Mídias</p>
+    </header>
+    <div class="input-group input-group-lg">
+        <span class="input-group-text" placeholder="Axelxemple" id="inputGroup-sizing-lg">Name</span>
+        <input type="text" class="form-control" aria-label="Sizing example input"    
+        v-model="name"
+        aria-describedby="inputGroup-sizing-lg">
+      </div>    
+
+      <div class="input-group input-group-lg">
+        <span class="input-group-text"  placeholder="Lmao" id="inputGroup-sizing-lg">L.Whisper</span>
+        <input type="text" v-model="whisper" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+      </div>
+    <button type="submit" v-on:click="addwhisper" class="btn btn-dark">Be immortalized</button>
+      
+     <div class="messages">
+        <div v-for="input in Inputs">
+        <span>Author: <strong> {{ input.name }} </strong></span>
+        <p>{{ input.whisper }}</p>
+        </div>
+     </div>
+    </div>  
+`,
+   data(){
+       return{ 
+           Inputs:[
+               {
+                   name:'Nome',
+                   whisper:'Whispers',
+               }],
+           name:'',
+           whisper:'',
+        }
+   },
+   methods: {
+       addwhisper(){
+           console.log(this.name);
+           console.log(this.whisper);
+           this.Inputs.push({
+               name:this.name,
+               whisper:this.whisper
+            
+           });
+
+       }
+   }
+
+})
+
+    </script>
+
+</body>
+</html>
+
