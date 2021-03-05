@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <title>Vue abilizando   </title>
+    <title>Vue abilizando</title>
 </head>
 
 <body>
@@ -13,17 +14,18 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script>
-     new Vue({
-  el: '#app',
-  template:` <div class="master">
+        new Vue({
+            el: '#app',
+            template: ` 
+    <div class="master">
     <header>
-        <p>Início</p>
-        <p>Serviços</p>
-        <p>endereços</p>
-        <p>Mídias</p>
+        <p>BACK</p>
+        <p>SERVICES</p>
+        <p>ADRESS</p>
+        <p>MIDIA</p>
     </header>
     <div class="input-group input-group-lg">
-        <span class="input-group-text" placeholder="Axelxemple" id="inputGroup-sizing-lg">Name</span>
+        <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
         <input type="text" class="form-control" aria-label="Sizing example input"    
         v-model="name"
         aria-describedby="inputGroup-sizing-lg">
@@ -36,41 +38,128 @@
     <button type="submit" v-on:click="addwhisper" class="btn btn-dark">Be immortalized</button>
       
      <div class="messages">
-        <div v-for="input in Inputs">
-        <span>Author: <strong> {{ input.name }} </strong></span>
-        <p>{{ input.whisper }}</p>
+        
+        <div class="Posts" v-for="(input,index) in Inputs">
+        
+            <span><strong> {{input.name}} </strong></span>
+        
+        <p>{{input.whisper}}</p>
+        
+        <a href=# v-on:click="Delete(index)" v-on>Delete</a>
         </div>
      </div>
     </div>  
 `,
-   data(){
-       return{ 
-           Inputs:[
-               {
-                   name:'Nome',
-                   whisper:'Whispers',
-               }],
-           name:'',
-           whisper:'',
-        }
-   },
-   methods: {
-       addwhisper(){
-           console.log(this.name);
-           console.log(this.whisper);
-           this.Inputs.push({
-               name:this.name,
-               whisper:this.whisper
-            
-           });
+            data() {
+                return {
+                    Inputs: [{
+                        name: 'The Author',
+                        whisper: 'Here is the place to free all your rage',
+                    }],
+                    name: ' ',
+                    whisper: '',
+                }
+            },
+            methods: {
+                addwhisper() {
+                    if (this.name.trim() == '' || this.whisper.trim() == '') {
+                        return;
+                    }
+                    this.Inputs.push({
+                        name: this.name,
+                        whisper: this.whisper,
+                    });
+                },
+                Delete(index) {
+                    this.Inputs.splice(index, 1),""
+                },
+            }
 
-       }
-   }
-
-})
-
+        })
     </script>
+    <style>
+        #app {
+            margin: 5%;
+            background-color: #131B23;
+            box-sizing: border-box;
+        }
+        *{
+            margin: 0px;
+            padding: 0px;
+            background-color: #ffffff
+        }
+        body{
+            background-image: url(/my-app/src/assets/17580.jpg)repeat;
+            width: 100vw;
+            height: 90vh;        }
+        header {
+            margin: 1%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 30px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        header p{
+            transition: 500ms;
 
+        }
+        header p:hover {
+            color: blue;
+            cursor: pointer;
+            font-size: 35px;
+        }
+        
+        input {
+            margin-left: 10px;
+        }
+        
+        .input-group {
+            margin: 1%;
+        }
+        
+        #inputGroup-sizing-lg {
+            width: 150px;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            background-color: #a4161a
+        }
+        
+        button {
+            margin: 1%;
+        }
+        
+        .Posts {
+            border-radius: 5px;
+            padding: 5px 4px;
+            background-color: #a4161a;
+            margin: 1%;
+        }
+        .Posts strong{
+            font-size: 20px;
+            background-color: #a4161a
+        }
+        .Posts p{
+            margin-top: 16px;
+            font-family: fantasy;
+            background-color: #a4161a;
+            transition: 2000ms;
+        }
+        .Posts p:hover{
+            color: #fff;
+        }
+        .Posts a{
+            background-color: #a4161a;
+            text-decoration: none;
+            color: floralwhite;
+            transition: 1000ms;
+        }
+        .Posts a:hover{
+            color: black;
+        
+        }
+    </style>
 </body>
-</html>
 
+</html>
